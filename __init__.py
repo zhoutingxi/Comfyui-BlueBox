@@ -28,6 +28,12 @@ from .nodes.cut_qwen_image_21 import (
     NODE_DISPLAY_NAME_MAPPINGS as CUT_QWEN_NODE_DISPLAY_NAME_MAPPINGS,
 )
 
+# === Color Calibrator 节点 ===
+from .nodes.color_calibrator_bluebox import (
+    NODE_CLASS_MAPPINGS as COLOR_CALIB_NODE_CLASS_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as COLOR_CALIB_NODE_DISPLAY_NAME_MAPPINGS,
+)
+
 WEB_DIRECTORY = "./web"
 
 NODE_CLASS_MAPPINGS = {
@@ -37,6 +43,7 @@ NODE_CLASS_MAPPINGS = {
     **COMPARE_NODE_CLASS_MAPPINGS,
     **ROTATE_NODE_CLASS_MAPPINGS,
     **CUT_QWEN_NODE_CLASS_MAPPINGS,
+    **COLOR_CALIB_NODE_CLASS_MAPPINGS,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -46,6 +53,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     **COMPARE_NODE_DISPLAY_NAME_MAPPINGS,
     **ROTATE_NODE_DISPLAY_NAME_MAPPINGS,
     **CUT_QWEN_NODE_DISPLAY_NAME_MAPPINGS,
+    **COLOR_CALIB_NODE_DISPLAY_NAME_MAPPINGS,
 }
 
 __all__ = ["WEB_DIRECTORY", "NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
@@ -123,6 +131,7 @@ async def bluebox_bridge_current_image(request):
         }
 
     return web.json_response({"ok": True, "image": item})
+
 
 @PromptServer.instance.routes.get("/bluebox/bridge_reference_image")
 async def bluebox_bridge_reference_image(request):
